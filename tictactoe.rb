@@ -1,19 +1,5 @@
 # Tic Tac Toe game
 
-# 3 consecutive picks wins. How do you define consecutive?
-# Cannot go on a space where other player is.
-# Check the board after each player goes to see if there's a winner.
-
-# players = ['joe', 'andy', 'sheena'];
-# currentPlayer = 0;
-# board = [[0,0,0], [0,0,0], [0,0,0]];
-# Draw criteria:
-# None of the win criteria are possible.
-# (Could've simplified by supplying rules)
-
-# Keep track of board and currentPlayerIndex.
-# Keep looping over players
-
 require 'yaml'
 require 'pry'
 
@@ -38,16 +24,16 @@ class Board
 		# Win criteria:
 		# 1. All of ONE triplet are the same player
 		# 2. All of a single index in all 3 triplets are the same player
-		# 3. adjacent indeces in adjacent tuplets are the same plaer (diagonal)
-		criteria = {
+		# 3. adjacent indeces in adjacent triplets are the same plaer (diagonal)
+		winning_criteria = {
 			1: @values.any?{|triple| triple.all?{|x| x == triple.first}},
-			2: row_is_same = false
-				indices = [0,1,2]
-				indices.each do |index|
-					row_is_same = @values.all?{|triple| triple[index]}
-				end
-		}
-		criteria.values.any?
+			2: [0,1,2].any?{|index| @values.all?{|triple| triple[index] == triple.first}},
+			3: [@values, @values.reverse].all?{|values| values[0] == values[1] == values[2]}
+		winning_criteria.values.any?
+	end
+
+	def draw?
+		
 	end
 
 	def completed?
