@@ -6,3 +6,4 @@ welcome: Welcome to Tic Tac Toe.
 q_move: What is your move? (rowIndex,colIndex)
 winner: "Congratulations! * has won the game!"
 q_play_again: New game? (y/n)
+draw: "It's a draw. Game over."
